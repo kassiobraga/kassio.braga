@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kassio Braga · Do design à automação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Space+Mono:wght@400;700&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EAEEF6;
+  --pastel:#A6C1E3;
+  --pastel-2:#CBD9EE;
+  --navy:#0A1730;
+  --pop:#0070FE;
+  --jet:#2F2F2F;
+  --white:#FFFFFF;
+  --title:'Bricolage Grotesque',sans-serif;
+  --mono:'Space Mono',monospace;
+  --body:'Albert Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  color:var(--navy);
+  background:var(--paper);
+  background-image:
+    linear-gradient(rgba(10,23,48,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(10,23,48,0.04) 1px,transparent 1px);
+  background-size:32px 32px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* nav */
+nav{
+  position:sticky;top:0;z-index:20;
+  background:var(--paper);
+  border-bottom:3px solid var(--navy);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:18px;height:74px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .px{flex:0 0 auto}
+.brand .name{font-family:var(--title);font-weight:800;font-size:21px;letter-spacing:-.5px;line-height:1}
+.brand .sub{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--pop);margin-top:3px}
+.links{display:flex;gap:24px}
+.links a{font-family:var(--mono);font-size:12px;letter-spacing:.5px;color:var(--navy);text-decoration:none;text-transform:uppercase;padding-bottom:2px;border-bottom:2px solid transparent}
+.links a:hover{border-bottom:2px solid var(--pop)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.in-link{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:2px solid var(--navy);background:var(--white);color:var(--navy)}
+.in-link:hover{background:var(--pop);border-color:var(--pop);color:var(--white)}
+.btn{
+  font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.5px;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;border:3px solid var(--navy);
+  padding:11px 18px;display:inline-flex;align-items:center;gap:10px;
+}
+.btn-primary{background:var(--navy);color:var(--white);box-shadow:4px 4px 0 var(--pop)}
+.btn-primary:hover{box-shadow:2px 2px 0 var(--pop);transform:translate(2px,2px)}
+.btn-ghost{background:var(--white);color:var(--navy);box-shadow:4px 4px 0 var(--navy)}
+.btn-ghost:hover{box-shadow:2px 2px 0 var(--navy);transform:translate(2px,2px)}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--pop);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.kicker .bar{width:34px;height:3px;background:var(--pop)}
+h1{font-family:var(--title);font-weight:800;font-size:clamp(38px,5.4vw,62px);line-height:1.02;letter-spacing:-1.5px;color:var(--navy)}
+h1 .ln2{color:var(--pop)}
+.lede{font-size:18px;line-height:1.65;color:var(--jet);margin-top:22px;max-width:30em}
+.layers{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.chip{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border:2px solid var(--navy);background:var(--pastel-2);padding:8px 13px}
+.cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px}
+
+/* photo */
+.shot{position:relative}
+.frame{position:relative;border:3px solid var(--navy);background:var(--pastel);box-shadow:12px 12px 0 var(--navy);aspect-ratio:4/5;overflow:hidden}
+.frame img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.02)}
+.cap{position:absolute;left:0;bottom:0;right:0;background:var(--navy);color:var(--paper);font-family:var(--mono);font-size:11px;letter-spacing:1px;padding:8px 12px;display:flex;justify-content:space-between}
+.cap b{color:#fff;font-weight:400}
+.crop{position:absolute;width:16px;height:16px;border:2px solid var(--pop)}
+.crop.tr{top:-3px;right:-3px;border-left:0;border-bottom:0}
+.crop.bl{bottom:-3px;left:-3px;border-right:0;border-top:0}
+.px-corner{position:absolute;top:-22px;left:-22px;z-index:3}
+.tick{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--navy)}
+.tick.t1{top:-22px;right:0}
+
+/* stats */
+.rule{border-top:3px solid var(--navy);border-bottom:3px solid var(--navy);margin-top:54px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:22px 18px;border-right:1px solid rgba(10,23,48,.16)}
+.stat:last-child{border-right:0}
+.stat .n{font-family:var(--title);font-weight:800;font-size:30px;letter-spacing:-1px;color:var(--navy);line-height:1}
+.stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.5px;color:var(--jet);text-transform:uppercase;margin-top:7px}
+.stat .n span{color:var(--pop)}
+
+@media(max-width:920px){
+  .links{display:none}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .shot{max-width:380px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid rgba(10,23,48,.16)}
+}
+@media(max-width:520px){
+  .wrap{padding:0 18px}
+  .nav-cta .btn{display:none}
+}
+
+/* camadas */
+.camadas{padding:70px 0 64px}
+.sec-head{margin-bottom:18px}
+.sec-head h2{font-family:var(--title);font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.04;letter-spacing:-1px;color:var(--navy);margin-top:16px;max-width:16em}
+.divider{margin:22px 0 10px}
+.row{display:grid;grid-template-columns:72px 1fr;gap:28px;padding:32px 0;border-top:1px solid rgba(10,23,48,.16);align-items:start}
+.row:first-of-type{border-top:3px solid var(--navy)}
+.row:last-of-type{border-bottom:3px solid var(--navy)}
+.marker{width:64px;height:64px;background:var(--navy);color:var(--white);font-family:var(--title);font-weight:800;font-size:25px;display:flex;align-items:center;justify-content:center;box-shadow:5px 5px 0 var(--pastel)}
+.row .lab{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pop)}
+.row h3{font-family:var(--title);font-weight:800;font-size:26px;letter-spacing:-.5px;color:var(--navy);margin-top:5px}
+.row p{font-size:16px;line-height:1.6;color:var(--jet);margin-top:9px;max-width:44em}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.tag{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border:2px solid var(--navy);background:var(--paper);padding:6px 11px}
+@media(max-width:520px){
+  .row{grid-template-columns:1fr;gap:14px}
+  .marker{width:52px;height:52px;font-size:21px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand">
+      <svg class="px" width="23" height="23" viewBox="0 0 46 46" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#0070FE"><rect x="0" y="0" width="14" height="14"/><rect x="16" y="0" width="14" height="14"/><rect x="0" y="16" width="14" height="14"/></g>
+      </svg>
+      <div>
+        <div class="name">Kassio Braga</div>
+        <div class="sub">ALL.Q AGÊNCIA</div>
+      </div>
+    </div>
+    <div class="links">
+      <a href="#sobre">Sobre</a>
+      <a href="#historia">História</a>
+      <a href="#cases">Cases</a>
+      <a href="#palestras">Palestras</a>
+      <a href="#ia">IA</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="nav-cta">
+      <a class="in-link" href="https://www.linkedin.com/in/kassiobraga/" aria-label="LinkedIn de Kassio Braga">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+      </a>
+      <a class="btn btn-primary" href="#contato">Propor parceria</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker"><span class="bar"></span>Portfólio técnico · 2026</div>
+      <h1>Do design à automação.<br><span class="ln2">Estratégia que vira sistema.</span></h1>
+      <p class="lede">Construo crescimento previsível para negócios B2B unindo três camadas que poucos operam juntas. Comecei no design, montei a All.Q em SEO e tráfego, e hoje desenho sistemas de automação e IA.</p>
+      <div class="layers">
+        <span class="chip">Marketing</span>
+        <span class="chip">Design</span>
+        <span class="chip">Automação de IA</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#palestras">
+          Convidar para palestra
+          <svg width="34" height="13" viewBox="0 0 126 46" shape-rendering="crispEdges" aria-hidden="true">
+            <g fill="#FFFFFF">
+              <rect x="0" y="16" width="14" height="14"/><rect x="16" y="16" width="14" height="14"/><rect x="32" y="16" width="14" height="14"/><rect x="48" y="16" width="14" height="14"/><rect x="64" y="16" width="14" height="14"/><rect x="80" y="16" width="14" height="14"/>
+              <rect x="96" y="0" width="14" height="14"/><rect x="112" y="16" width="14" height="14"/><rect x="96" y="32" width="14" height="14"/>
+            </g>
+          </svg>
+        </a>
+        <a class="btn btn-ghost" href="#contato">Propor parceria</a>
+      </div>
+    </div>
+
+    <div class="shot">
+      <svg class="px-corner" width="46" height="46" viewBox="0 0 46 46" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#0070FE"><rect x="0" y="0" width="14" height="14"/><rect x="16" y="0" width="14" height="14"/><rect x="0" y="16" width="14" height="14"/></g>
+      </svg>
+      <span class="tick t1">fig.01</span>
+      <div class="frame">
+        <span class="crop tr"></span>
+        <span class="crop bl"></span>
+        <img src="https://www.kassiobraga.com.br/imagens/palco.jpg" alt="Kassio Braga palestrando no palco">
+        <div class="cap"><span>palco · campus party go</span><b>2022</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="rule">
+      <div class="stats">
+        <div class="stat"><div class="n"><span>+R$2</span>Mi</div><div class="l">em Ads gerenciados</div></div>
+        <div class="stat"><div class="n"><span>+</span>500</div><div class="l">empresas atendidas</div></div>
+        <div class="stat"><div class="n"><span>+</span>10 anos</div><div class="l">de experiência</div></div>
+        <div class="stat"><div class="n"><span>+</span>15</div><div class="l">segmentos atendidos</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="camadas" id="sobre">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span class="bar"></span>As três camadas · o que entrego</div>
+      <h2>Três frentes que poucos operam juntas.</h2>
+      <svg class="divider" width="206" height="40" viewBox="0 0 206 48" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="0" y="24" width="158" height="14" fill="#0070FE"/>
+        <rect x="160" y="8" width="14" height="14" fill="#0070FE"/>
+        <rect x="176" y="24" width="14" height="14" fill="#0070FE"/>
+      </svg>
+    </div>
+
+    <div class="row">
+      <div class="marker">01</div>
+      <div>
+        <div class="lab">Marketing</div>
+        <h3>Investimento que vira receita previsível.</h3>
+        <p>SEO técnico, tráfego pago em Google, Meta e Microsoft, e conteúdo orientado a oportunidade real de busca. Tudo medido por CAC, LTV e previsibilidade, nunca por vaidade.</p>
+        <div class="tags"><span class="tag">SEO técnico</span><span class="tag">Google Ads</span><span class="tag">Meta Ads</span><span class="tag">Conteúdo</span></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="marker">02</div>
+      <div>
+        <div class="lab">Design</div>
+        <h3>Marca e interface que sustentam a estratégia.</h3>
+        <p>Carreira que começou na prancheta. Do logo à landing page, o design aqui não é enfeite, é o que faz a estratégia funcionar e converter na ponta.</p>
+        <div class="tags"><span class="tag">Identidade</span><span class="tag">Web design</span><span class="tag">Landing pages</span><span class="tag">Criativos</span></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="marker">03</div>
+      <div>
+        <div class="lab">Automação de IA</div>
+        <h3>Sistemas que escalam o comercial sem inchar o time.</h3>
+        <p>Micro sistemas B2B, automação em n8n, integração entre site, CRM e ferramentas de venda. A frente que tira o trabalho repetitivo do caminho e libera a operação para crescer.</p>
+        <div class="tags"><span class="tag">Automação n8n</span><span class="tag">Integrações</span><span class="tag">CRM e chatbot</span><span class="tag">BI</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

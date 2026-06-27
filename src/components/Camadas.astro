@@ -1,0 +1,63 @@
+---
+import PxDivider from './pixel/PxDivider.astro';
+
+const camadas = [
+  {
+    n: '01',
+    lab: 'Marketing',
+    titulo: 'Investimento que vira receita previsível.',
+    texto: 'SEO técnico, tráfego pago em Google, Meta e Microsoft, e conteúdo orientado a oportunidade real de busca. Tudo medido por CAC, LTV e previsibilidade, nunca por vaidade.',
+    tags: ['SEO técnico', 'Google Ads', 'Meta Ads', 'Conteúdo'],
+  },
+  {
+    n: '02',
+    lab: 'Design',
+    titulo: 'Marca e interface que sustentam a estratégia.',
+    texto: 'Carreira que começou na prancheta. Do logo à landing page, o design aqui não é enfeite, é o que faz a estratégia funcionar e converter na ponta.',
+    tags: ['Identidade', 'Web design', 'Landing pages', 'Criativos'],
+  },
+  {
+    n: '03',
+    lab: 'Automação de IA',
+    titulo: 'Sistemas que escalam o comercial sem inchar o time.',
+    texto: 'Micro sistemas B2B, automação em n8n, integração entre site, CRM e ferramentas de venda. A frente que tira o trabalho repetitivo do caminho e libera a operação para crescer.',
+    tags: ['Automação n8n', 'Integrações', 'CRM e chatbot', 'BI'],
+  },
+];
+---
+<section class="camadas" id="sobre">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span class="bar"></span>As três camadas · o que entrego</div>
+      <h2>Três frentes que poucos operam juntas.</h2>
+      <PxDivider />
+    </div>
+
+    {camadas.map((c) => (
+      <div class="row">
+        <div class="marker">{c.n}</div>
+        <div>
+          <div class="lab">{c.lab}</div>
+          <h3>{c.titulo}</h3>
+          <p>{c.texto}</p>
+          <div class="tags">{c.tags.map((t) => <span class="tag">{t}</span>)}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .camadas{padding:70px 0 64px}
+  .row{display:grid;grid-template-columns:72px 1fr;gap:28px;padding:32px 0;border-top:1px solid rgba(10,23,48,.16);align-items:start}
+  .row:first-of-type{border-top:3px solid var(--navy)}
+  .row:last-of-type{border-bottom:3px solid var(--navy)}
+  .row .lab{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pop)}
+  .row h3{font-family:var(--title);font-weight:800;font-size:26px;letter-spacing:-.5px;color:var(--navy);margin-top:5px}
+  .row p{font-size:16px;line-height:1.6;color:var(--jet);margin-top:9px;max-width:44em}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+  @media(max-width:520px){
+    .row{grid-template-columns:1fr;gap:14px}
+    .marker{width:52px;height:52px;font-size:21px}
+  }
+</style>

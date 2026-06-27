@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import PxDivider from '../../components/pixel/PxDivider.astro';
+import Icon from '../../components/Icon.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', (e) => !e.data.rascunho))
+  .sort((a, b) => b.data.data.valueOf() - a.data.data.valueOf());
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '');
+---
+<Base title="Blog · Kassio Braga" description="Bastidor de marketing, automação e B2B por Kassio Braga, da All.Q Agência.">
+  <Nav blog={true} />
+  <main class="wrap blog-index">
+    <div class="sec-head">
+      <div class="kicker"><span class="bar"></span>Blog · um por mês, com peso</div>
+      <h2>Bastidor de marketing, automação e B2B.</h2>
+      <p class="sub">Registro do que ando testando na All.Q. Caso real, opinião contra o senso comum e bastidor de automação. Sem receita pronta.</p>
+      <PxDivider />
+    </div>
+
+    <div class="list">
+      {posts.map((p) => (
+        <a class="row" href={`/blog/${p.slug}`}>
+          <div class="row-meta">
+            <span class="ptag">{p.data.tag}</span>
+            <span class="pdate">{fmt(p.data.data)}</span>
+          </div>
+          <div class="row-main">
+            <h3>{p.data.titulo}</h3>
+            <p>{p.data.resumo}</p>
+            <span class="more">Ler artigo <Icon name="arrow-up-right" size={16} /></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .blog-index{padding:54px 0 64px}
+  .list{margin-top:8px;border-top:3px solid var(--navy)}
+  .row{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:30px 0;border-bottom:1px solid rgba(10,23,48,.16);text-decoration:none;color:var(--navy);align-items:start}
+  .row:last-child{border-bottom:3px solid var(--navy)}
+  .row:hover h3{color:var(--pop)}
+  .row-meta{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+  .ptag{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border:2px solid var(--navy);background:var(--pastel-2);padding:4px 9px}
+  .pdate{font-family:var(--mono);font-size:12px;letter-spacing:.5px;color:var(--jet);text-transform:uppercase}
+  .row-main h3{font-family:var(--title);font-weight:800;font-size:25px;letter-spacing:-.6px;line-height:1.1;transition:color .12s}
+  .row-main p{font-size:15px;line-height:1.6;color:var(--jet);margin-top:10px;max-width:46em}
+  .more{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--pop);margin-top:14px}
+  @media(max-width:620px){
+    .row{grid-template-columns:1fr;gap:14px}
+  }
+</style>

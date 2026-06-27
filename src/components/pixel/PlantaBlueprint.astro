@@ -1,0 +1,52 @@
+---
+// Grafismo de planta técnica estilizada, no estilo blueprint do site.
+// Usado onde não existe foto real (fase 01, construção civil).
+// Navy com grid, traçado de planta em branco, cotas e motivo pixel em azul pop.
+---
+<svg class="planta" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" shape-rendering="geometricPrecision" role="img" aria-label="Planta técnica estilizada, referência à base na construção civil">
+  <rect width="300" height="200" fill="#0A1730" />
+
+  <!-- grid blueprint -->
+  <g stroke="#FFFFFF" stroke-width="1" opacity="0.07">
+    <line x1="0" y1="25" x2="300" y2="25" /><line x1="0" y1="50" x2="300" y2="50" />
+    <line x1="0" y1="75" x2="300" y2="75" /><line x1="0" y1="100" x2="300" y2="100" />
+    <line x1="0" y1="125" x2="300" y2="125" /><line x1="0" y1="150" x2="300" y2="150" />
+    <line x1="0" y1="175" x2="300" y2="175" />
+    <line x1="25" y1="0" x2="25" y2="200" /><line x1="50" y1="0" x2="50" y2="200" />
+    <line x1="75" y1="0" x2="75" y2="200" /><line x1="100" y1="0" x2="100" y2="200" />
+    <line x1="125" y1="0" x2="125" y2="200" /><line x1="150" y1="0" x2="150" y2="200" />
+    <line x1="175" y1="0" x2="175" y2="200" /><line x1="200" y1="0" x2="200" y2="200" />
+    <line x1="225" y1="0" x2="225" y2="200" /><line x1="250" y1="0" x2="250" y2="200" />
+    <line x1="275" y1="0" x2="275" y2="200" />
+  </g>
+
+  <!-- planta: paredes -->
+  <g fill="none" stroke="#EAEEF6" stroke-width="2.5">
+    <rect x="48" y="46" width="170" height="108" />
+    <line x1="48" y1="100" x2="120" y2="100" />
+    <line x1="120" y1="46" x2="120" y2="154" />
+    <line x1="120" y1="120" x2="218" y2="120" />
+  </g>
+  <!-- vão de porta -->
+  <path d="M120 100 a16 16 0 0 1 16 -16" fill="none" stroke="#0070FE" stroke-width="2" />
+  <line x1="120" y1="84" x2="120" y2="100" stroke="#0A1730" stroke-width="3" />
+
+  <!-- cotas -->
+  <g stroke="#0070FE" stroke-width="1.5">
+    <line x1="48" y1="34" x2="218" y2="34" />
+    <line x1="48" y1="30" x2="48" y2="38" /><line x1="218" y1="30" x2="218" y2="38" />
+    <line x1="234" y1="46" x2="234" y2="154" />
+    <line x1="230" y1="46" x2="238" y2="46" /><line x1="230" y1="154" x2="238" y2="154" />
+  </g>
+  <text x="133" y="29" fill="#9db8e6" font-family="'Space Mono',monospace" font-size="9" text-anchor="middle">base · método · prazo</text>
+
+  <!-- motivo pixel, assinatura -->
+  <g fill="#0070FE">
+    <rect x="258" y="158" width="9" height="9" /><rect x="269" y="158" width="9" height="9" />
+    <rect x="258" y="169" width="9" height="9" />
+  </g>
+</svg>
+
+<style>
+  .planta{width:100%;height:100%;display:block}
+</style>

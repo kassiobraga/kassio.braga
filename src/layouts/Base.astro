@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site.ts';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Kassio Braga · Do design à automação',
+  description = 'Kassio Braga, fundador da All.Q Agência. Marketing, design e automação de IA para negócios B2B. Estratégia que vira sistema.',
+} = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.nome,
+  url: `https://${site.dominio}`,
+  email: `mailto:${site.email}`,
+  jobTitle: 'Fundador da All.Q Agência',
+  worksFor: { '@type': 'Organization', name: site.agencia },
+  sameAs: [site.linkedin],
+};
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Space+Mono:wght@400;700&family=Albert+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+  <slot />
+</body>
+</html>

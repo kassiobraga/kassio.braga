@@ -1,0 +1,101 @@
+---
+import PxArrow from './pixel/PxArrow.astro';
+import PxDivider from './pixel/PxDivider.astro';
+
+// Datas recuperadas do site atual. Confirmar no VALIDACAO.
+const palestras = [
+  {
+    cota: 'fig.p1',
+    nome: 'Campus Party Goiás',
+    papel: 'Palestra no palco principal',
+    local: 'Goiânia · GO',
+    ano: '2022',
+    foto: '/img/campus-party-go.webp',
+    alt: 'Kassio Braga no palco da Campus Party Goiás',
+    legenda: 'palco · campus party go',
+  },
+  {
+    cota: 'fig.p2',
+    nome: 'Mentoria Sebrae DF',
+    papel: 'Mentor de negócios',
+    local: 'Brasília · DF',
+    ano: '2021',
+    foto: '/img/sebrae-df.webp',
+    alt: 'Kassio Braga em mentoria no Sebrae DF',
+    legenda: 'mentoria · sebrae df',
+  },
+  {
+    cota: 'fig.p3',
+    nome: 'Brasília Innovation Week',
+    papel: 'Mentor no programa BIOTIC',
+    local: 'Brasília · DF',
+    ano: '2021',
+    foto: '/img/innovation-week.webp',
+    alt: 'Kassio Braga na Brasília Innovation Week, programa BIOTIC',
+    legenda: 'mentor · biotic',
+  },
+  {
+    cota: 'fig.p4',
+    nome: 'Webinário E-goi',
+    papel: 'Convidado, automação e push',
+    local: 'Online',
+    ano: '2022',
+    foto: '/img/webinario-egoi.webp',
+    alt: 'Kassio Braga no webinário da E-goi',
+    legenda: 'webinário · e-goi',
+  },
+];
+---
+<section class="palestras" id="palestras">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span class="bar"></span>Palestras e mentorias · palco</div>
+      <h2>Conteúdo prático que organizador de evento pode chamar.</h2>
+      <p class="sub">Palco, mentoria e formação para times de marketing e empreendedores. Sempre com caso real, número na mesa e método que dá para aplicar no dia seguinte.</p>
+      <PxDivider />
+    </div>
+
+    <div class="grid">
+      {palestras.map((p) => (
+        <article class="card">
+          <span class="tick cota">{p.cota}</span>
+          <div class="frame blueprint">
+            <span class="crop tr"></span>
+            <span class="crop bl"></span>
+            <img src={p.foto} alt={p.alt} loading="lazy" width="900" height="600" />
+            <div class="cap"><span>{p.legenda}</span><b>{p.ano}</b></div>
+          </div>
+          <div class="meta">
+            <h3>{p.nome}</h3>
+            <div class="papel">{p.papel}</div>
+            <div class="local"><span>{p.local}</span><span class="yr">{p.ano}</span></div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contato">
+        Convidar para palestra
+        <PxArrow w={34} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .palestras{padding:66px 0 64px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:46px 34px;margin-top:10px}
+  .card{position:relative}
+  .card .cota{top:-20px;right:0}
+  .card .frame{aspect-ratio:3/2}
+  .meta{margin-top:16px}
+  .meta h3{font-family:var(--title);font-weight:800;font-size:22px;letter-spacing:-.5px;color:var(--navy)}
+  .meta .papel{font-size:15px;color:var(--jet);margin-top:4px}
+  .meta .local{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--jet);margin-top:10px;border-top:2px solid var(--navy);padding-top:9px}
+  .meta .local .yr{color:var(--pop);font-weight:700}
+  .cta-row{margin-top:44px}
+  @media(max-width:720px){
+    .grid{grid-template-columns:1fr;gap:40px}
+  }
+</style>

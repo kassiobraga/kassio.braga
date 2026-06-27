@@ -1,0 +1,11 @@
+---
+// Divisor de seção com pixel. Azul #0070FE.
+interface Props { class?: string; w?: number; }
+const { class: cls = 'divider', w = 206 } = Astro.props;
+const h = Math.round((w * 48) / 206);
+---
+<svg class={cls} width={w} height={h} viewBox="0 0 206 48" shape-rendering="crispEdges" aria-hidden="true">
+  <rect x="0" y="24" width="158" height="14" fill="#0070FE" />
+  <rect x="160" y="8" width="14" height="14" fill="#0070FE" />
+  <rect x="176" y="24" width="14" height="14" fill="#0070FE" />
+</svg>

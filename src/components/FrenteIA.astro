@@ -1,0 +1,71 @@
+---
+import PxArrow from './pixel/PxArrow.astro';
+import Icon from './Icon.astro';
+
+const blocos = [
+  { icon: 'workflow', titulo: 'Automação em n8n', desc: 'Processos B2B que rodam sozinhos, do lead frio ao follow-up, sem inchar o time comercial.' },
+  { icon: 'link', titulo: 'Integrações', desc: 'Site, CRM e ferramentas de venda falando a mesma língua, sem retrabalho e sem copiar e colar.' },
+  { icon: 'cpu', titulo: 'Micro sistemas sob medida', desc: 'Catálogos e painéis que conectam o que as plataformas não conectam sozinhas.' },
+];
+---
+<section class="ia" id="ia">
+  <div class="wrap">
+    <div class="panel blueprint-panel">
+      <div class="panel-top">
+        <span class="tag-cota">fig.ia · vanguarda</span>
+        <span class="tag-cota right">all.q · próxima camada</span>
+      </div>
+
+      <div class="panel-in">
+        <div class="kicker"><span class="bar"></span>Frente de IA · o que vem agora</div>
+        <h2>A próxima camada da All.Q.</h2>
+        <p class="lede">Desenho micro sistemas sob medida para negócios B2B, automação de processos em n8n, integração entre site, CRM e ferramentas de venda, e painéis que conectam o que as plataformas não conectam sozinhas. Menos trabalho repetitivo, mais operação que escala.</p>
+
+        <div class="blocos">
+          {blocos.map((b) => (
+            <div class="bloco">
+              <Icon name={b.icon} size={26} stroke="#0070FE" />
+              <h3>{b.titulo}</h3>
+              <p>{b.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary ia-btn" href="#contato">
+            Falar sobre automação
+            <PxArrow w={34} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ia{padding:30px 0 64px}
+  .panel{position:relative;box-shadow:12px 12px 0 var(--pop)}
+  .panel-top{display:flex;justify-content:space-between;padding:14px 22px;border-bottom:1px solid rgba(255,255,255,.18)}
+  .tag-cota{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#9db8e6}
+  .panel-in{padding:40px 36px 44px}
+  .panel-in .kicker{color:#5fa0ff}
+  .panel-in .kicker .bar{background:#5fa0ff}
+  .panel-in h2{font-family:var(--title);font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-1px;color:var(--white);margin-top:16px}
+  .panel-in .lede{font-size:18px;line-height:1.65;color:#cdd8ee;margin-top:16px;max-width:50em}
+
+  .blocos{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:34px;border:1px solid rgba(255,255,255,.22)}
+  .bloco{padding:24px 22px;border-right:1px solid rgba(255,255,255,.22)}
+  .bloco:last-child{border-right:0}
+  .bloco h3{font-family:var(--title);font-weight:800;font-size:19px;color:var(--white);margin-top:14px;letter-spacing:-.3px}
+  .bloco p{font-size:14px;line-height:1.6;color:#bcc9e4;margin-top:8px}
+
+  .cta-row{margin-top:32px}
+  .ia-btn{box-shadow:4px 4px 0 var(--pop)}
+
+  @media(max-width:760px){
+    .panel-in{padding:30px 22px 34px}
+    .blocos{grid-template-columns:1fr}
+    .bloco{border-right:0;border-bottom:1px solid rgba(255,255,255,.22)}
+    .bloco:last-child{border-bottom:0}
+  }
+</style>

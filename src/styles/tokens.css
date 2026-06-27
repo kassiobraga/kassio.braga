@@ -1,0 +1,17 @@
+:root{
+  --paper:#EAEEF6;     /* fundo papel azul claro */
+  --pastel:#A6C1E3;    /* azul pastel chapado */
+  --pastel-2:#CBD9EE;  /* azul pastel claro, chips */
+  --navy:#0A1730;      /* tinta, bordas grossas, sombra dura */
+  --pop:#0070FE;       /* unico saturado, link e CTA */
+  --jet:#2F2F2F;       /* corpo de texto */
+  --white:#FFFFFF;
+
+  --title:'Bricolage Grotesque',sans-serif;
+  --mono:'Space Mono',monospace;
+  --body:'Albert Sans',sans-serif;
+
+  /* ritmo */
+  --wrap:1180px;
+  --pad:28px;
+}

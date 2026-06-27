@@ -1,0 +1,81 @@
+---
+import PxCorner from './pixel/PxCorner.astro';
+import { site } from '../data/site.ts';
+
+const ano = new Date().getFullYear();
+const links = [
+  { href: '/#sobre', label: 'Sobre' },
+  { href: '/#historia', label: 'História' },
+  { href: '/#palestras', label: 'Palestras' },
+  { href: '/#cases', label: 'Cases' },
+  { href: '/#ia', label: 'IA' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/#contato', label: 'Contato' },
+];
+---
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand-line">
+          <PxCorner size={26} />
+          <span class="name">Kassio Braga</span>
+        </div>
+        <p class="tagline">Menos Vaidade, Mais Resultados.</p>
+        <p class="parte">Parte da <strong>All.Q Agência</strong>.</p>
+      </div>
+
+      <nav class="foot-nav" aria-label="Rodapé">
+        {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+
+      <div class="foot-redes">
+        <span class="foot-lab">Onde me achar</span>
+        <a class="rede" href={site.linkedin} target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a class="rede" href={site.whatsappLink} target="_blank" rel="noopener">
+          <span>WhatsApp</span>
+        </a>
+        <a class="rede" href={`mailto:${site.email}`}>
+          <span>{site.email}</span>
+        </a>
+        <img class="logo-allq" src="/img/logo-allq.webp" alt="Logo All.Q Agência" width="140" height="46" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="foot-base">
+      <span>© {ano} Kassio Braga. Todos os direitos reservados.</span>
+      <span class="dominio">{site.dominio}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer{background:var(--navy);color:var(--paper);border-top:3px solid var(--navy);margin-top:20px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding:52px 0 36px}
+
+  .brand-line{display:flex;align-items:center;gap:11px}
+  .brand-line .name{font-family:var(--title);font-weight:800;font-size:22px;letter-spacing:-.5px;color:var(--white)}
+  .tagline{font-family:var(--title);font-weight:600;font-size:17px;color:var(--white);margin-top:16px}
+  .parte{font-size:14px;color:#aebbd6;margin-top:8px}
+  .parte strong{color:var(--white)}
+
+  .foot-nav{display:flex;flex-direction:column;gap:11px}
+  .foot-nav a{font-family:var(--mono);font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:#cdd8ee;text-decoration:none;width:fit-content;border-bottom:2px solid transparent}
+  .foot-nav a:hover{color:var(--white);border-bottom-color:var(--pop)}
+
+  .foot-redes{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+  .foot-lab{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8fa2c6}
+  .rede{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:#cdd8ee;text-decoration:none}
+  .rede:hover{color:var(--white)}
+  .logo-allq{margin-top:8px;height:38px;width:auto;filter:brightness(0) invert(1) opacity(.85)}
+
+  .foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.16);padding:18px 0 30px;font-family:var(--mono);font-size:11px;letter-spacing:.5px;color:#8fa2c6;text-transform:uppercase}
+  .foot-base .dominio{color:var(--pop)}
+
+  @media(max-width:760px){
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+  }
+</style>

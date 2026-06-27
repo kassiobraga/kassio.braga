@@ -1,0 +1,69 @@
+---
+import PxCorner from './pixel/PxCorner.astro';
+import PxArrow from './pixel/PxArrow.astro';
+---
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker"><span class="bar"></span>Portfólio técnico · 2026</div>
+      <h1>Do design à automação.<br /><span class="ln2">Estratégia que vira sistema.</span></h1>
+      <p class="lede">Construo crescimento previsível para negócios B2B unindo três camadas que poucos operam juntas. Comecei no design, montei a All.Q em SEO e tráfego, e hoje desenho sistemas de automação e IA.</p>
+      <div class="layers">
+        <span class="chip">Marketing</span>
+        <span class="chip">Design</span>
+        <span class="chip">Automação de IA</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#palestras">
+          Convidar para palestra
+          <PxArrow w={34} />
+        </a>
+        <a class="btn btn-ghost" href="#contato">Propor parceria</a>
+      </div>
+    </div>
+
+    <div class="shot">
+      <PxCorner size={46} class="px-corner" />
+      <span class="tick t1">fig.01</span>
+      <div class="frame hero-frame">
+        <span class="crop tr"></span>
+        <span class="crop bl"></span>
+        <img src="/img/palco.webp" width="1100" height="733" alt="Kassio Braga palestrando no palco da Campus Party Goiás" />
+        <div class="cap"><span>palco · campus party go</span><b>2022</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="rule rule-stats">
+      <div class="stats">
+        <div class="stat"><div class="n"><span>+R$2</span>Mi</div><div class="l">em Ads gerenciados</div></div>
+        <div class="stat"><div class="n"><span>+</span>500</div><div class="l">empresas atendidas</div></div>
+        <div class="stat"><div class="n"><span>+</span>10 anos</div><div class="l">de experiência</div></div>
+        <div class="stat"><div class="n"><span>+</span>15</div><div class="l">segmentos atendidos</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .hero{padding:64px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+  .kicker{margin-bottom:20px}
+  h1{font-family:var(--title);font-weight:800;font-size:clamp(38px,5.4vw,62px);line-height:1.02;letter-spacing:-1.5px;color:var(--navy)}
+  h1 .ln2{color:var(--pop)}
+  .lede{font-size:18px;line-height:1.65;color:var(--jet);margin-top:22px;max-width:30em}
+  .layers{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+  .cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px}
+
+  .shot{position:relative}
+  .hero-frame{aspect-ratio:4/5}
+  .px-corner{position:absolute;top:-22px;left:-22px;z-index:3}
+  .tick.t1{top:-22px;right:0}
+  .rule-stats{margin-top:54px}
+
+  @media(max-width:920px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .shot{max-width:380px}
+  }
+</style>

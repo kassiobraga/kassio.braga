@@ -1,0 +1,132 @@
+---
+import PxDivider from './pixel/PxDivider.astro';
+import PlantaBlueprint from './pixel/PlantaBlueprint.astro';
+
+// Cronologia real e definitiva (rodada 3), quatro fases. Só português.
+// A All.Q foi fundada em janeiro de 2017 (não 2016). 2016 é a virada em Goiânia.
+// Fotos reais onde fazem sentido; onde não há foto, grafismo blueprint. Ver VALIDACAO.
+const fases = [
+  {
+    n: '01',
+    periodo: '2007 a 2016',
+    cota: 'fig.h1',
+    titulo: 'A base.',
+    texto: 'Nasci em Brasília em 1989 e morei lá até 2015. Os primeiros trabalhos foram na capital: auditor fiscal temporário no grupo Ambev e depois frentista em posto Petrobras. De 2008 a 2015 vieram quase oito anos de construção civil na Constrói Construções e Incorporações, e de 2015 a 2016 o Cartório de Registro Civil em Catalão. Foi a escola de método, prazo e chão de obra que sustenta o meu jeito de atender construção e indústria até hoje.',
+    foto: null,
+    fotoAlt: '',
+    legenda: 'construção civil · constrói',
+    ano: '2007',
+  },
+  {
+    n: '02',
+    periodo: '2016 · goiânia',
+    cota: 'fig.h2',
+    titulo: 'A virada.',
+    texto: 'Mudei para Goiânia. De manhã trabalhava com Celso Moraes, perito do Fórum de Goiânia, e nas obras de loteamento da J. Virgílio: vistoria, perícia, medição e desenho de planta. À tarde entrei na PSA Sistemas, onde o marketing digital começou de fato, com novo site, identidade visual e o primeiro projeto de inbound. Aqui o design começou a virar marketing.',
+    foto: null,
+    fotoAlt: '',
+    legenda: 'perícia e obras · goiânia',
+    ano: '2016',
+  },
+  {
+    n: '03',
+    periodo: '2016 a 2017',
+    cota: 'fig.h3',
+    titulo: 'O primeiro cliente.',
+    texto: 'Saí do Celso, segui na PSA e comecei a captar por conta própria. O primeiro cliente foi Rodrigo Vidal, da Lumi Software, o primeiro site vendido e a primeira logo comercial. Por indicação cheguei à Asteps, comunidade de startups de Brasília: identidade visual, sites e o começo com SEO, depois a implantação de RD Station. Aqui o marketing começou a virar estratégia.',
+    foto: null,
+    fotoAlt: '',
+    legenda: 'primeiro cliente · lumi software',
+    ano: '2017',
+  },
+  {
+    n: '04',
+    periodo: 'janeiro de 2017 a hoje',
+    cota: 'fig.h4',
+    titulo: 'A All.Q.',
+    texto: 'Fundei a agência em janeiro de 2017 como AllQuadrado Marketing, nome que pouco depois foi simplificado para All.Q Agência. Hoje atuo em B2B de construção, indústria e tecnologia. As três camadas, marketing, design e automação, são a soma de toda essa trajetória.',
+    foto: '/img/perfil.webp',
+    fotoAlt: 'Retrato de Kassio Braga',
+    legenda: 'all.q agência · hoje',
+    ano: '2017',
+  },
+];
+---
+<section class="historia" id="historia">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span class="bar"></span>Minha história · a linha do tempo</div>
+      <h2>Da obra ao sistema, uma base que não se improvisa.</h2>
+      <PxDivider />
+    </div>
+
+    <ol class="rail">
+      {fases.map((f) => (
+        <li class="fase">
+          <div class="rail-mark">
+            <span class="year">{f.ano}</span>
+            <span class="marker">{f.n}</span>
+          </div>
+
+          <div class="fase-body">
+            <div class="lab">{f.periodo}</div>
+            <h3>{f.titulo}</h3>
+            <p>{f.texto}</p>
+          </div>
+
+          <div class="fase-shot">
+            <span class="tick cota">{f.cota}</span>
+            {f.foto ? (
+              <div class="frame blueprint">
+                <span class="crop tr"></span>
+                <span class="crop bl"></span>
+                <img src={f.foto} alt={f.fotoAlt} loading="lazy" width="900" height="600" />
+                <div class="cap"><span>{f.legenda}</span><b>{f.ano}</b></div>
+              </div>
+            ) : (
+              <div class="frame blueprint grafismo">
+                <span class="crop tr"></span>
+                <span class="crop bl"></span>
+                <PlantaBlueprint />
+                <div class="cap"><span>{f.legenda}</span><b>{f.ano}</b></div>
+              </div>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .historia{padding:66px 0 64px}
+  .rail{list-style:none;margin-top:8px}
+  .fase{display:grid;grid-template-columns:120px 1fr .9fr;gap:30px;padding:38px 0;align-items:start;position:relative;border-top:1px solid rgba(10,23,48,.16)}
+  .fase:first-child{border-top:3px solid var(--navy)}
+  .fase:last-child{border-bottom:3px solid var(--navy)}
+
+  .rail-mark{display:flex;flex-direction:column;align-items:flex-start;gap:12px;position:relative}
+  .rail-mark .year{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:1px;color:var(--pop)}
+  /* linha de cota vertical do blueprint */
+  .rail-mark::after{content:'';position:absolute;left:31px;top:78px;bottom:-38px;width:1px;background:repeating-linear-gradient(var(--navy),var(--navy) 4px,transparent 4px,transparent 8px);opacity:.4}
+  .fase:last-child .rail-mark::after{display:none}
+
+  .fase-body .lab{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--jet)}
+  .fase-body h3{font-family:var(--title);font-weight:800;font-size:27px;letter-spacing:-.5px;color:var(--navy);margin-top:6px}
+  .fase-body p{font-size:16px;line-height:1.65;color:var(--jet);margin-top:11px;max-width:40em}
+
+  .fase-shot{position:relative}
+  .fase-shot .cota{top:-20px;right:0}
+  .fase-shot .frame{aspect-ratio:3/2}
+  .fase-shot .frame.missing{min-height:170px}
+
+  @media(max-width:880px){
+    .fase{grid-template-columns:88px 1fr;gap:20px}
+    .fase-shot{grid-column:1 / -1;max-width:420px;margin-top:4px}
+    .rail-mark::after{display:none}
+  }
+  @media(max-width:520px){
+    .fase{grid-template-columns:64px 1fr}
+    .marker{width:52px;height:52px;font-size:21px}
+  }
+</style>

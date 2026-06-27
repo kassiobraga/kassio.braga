@@ -1,0 +1,118 @@
+---
+import PxDivider from './pixel/PxDivider.astro';
+import Icon from './Icon.astro';
+
+// Grade final liberada pelo Kassio. CRP, IDX e UNIFAN seguem bloqueados
+// e não aparecem nem por nome, conforme regra do brief. Ver VALIDACAO.
+const logos = [
+  { src: '/img/logo-tubos-abc.webp', nome: 'Tubos ABC' },
+  { src: '/img/logo-psa-sistemas.webp', nome: 'PSA Sistemas' },
+  { src: '/img/logo-imperador.webp', nome: 'Imperador' },
+  { src: '/img/logo-lumi.webp', nome: 'Lumi Software', pequeno: true },
+  { src: '/img/logo-fastescova.webp', nome: 'FastEscova' },
+  // Flora cliente local (não confundir com o Grupo Flora/JBS citado na relação longa).
+  { src: '/img/logo-flora.webp', nome: 'Flora', alt: 'Flora, cliente local' },
+  { src: '/img/logo-hospital-olhos.webp', nome: 'Hospital de Olhos' },
+  { src: '/img/logo-vanguarda.webp', nome: 'Vanguarda' },
+];
+
+const credenciais = [
+  { nome: 'Google Partner', desc: 'Gestão no ecossistema Google Ads' },
+  { nome: 'Meta Business Partner', desc: 'Mídia e estratégia em redes sociais' },
+  { nome: 'Microsoft Advertising', desc: 'Bing e Microsoft Ads' },
+  { nome: 'E-goi Partner', desc: 'Automação de marketing e fluxos' },
+];
+---
+<section class="cases" id="cases">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span class="bar"></span>Cases e marcas · quem confiou</div>
+      <h2>Marcas de construção, indústria e tecnologia.</h2>
+      <PxDivider />
+    </div>
+
+    <div class="rule rule-stats cases-stats">
+      <div class="stats">
+        <div class="stat"><div class="n"><span>+R$2</span>Mi</div><div class="l">em Ads gerenciados</div></div>
+        <div class="stat"><div class="n"><span>+</span>500</div><div class="l">empresas atendidas</div></div>
+        <div class="stat"><div class="n"><span>+</span>10 anos</div><div class="l">de experiência</div></div>
+        <div class="stat"><div class="n"><span>+</span>15</div><div class="l">segmentos atendidos</div></div>
+      </div>
+    </div>
+
+    <div class="logo-head">
+      <span class="cota">fig.c1 · marcas liberadas</span>
+    </div>
+    <div class="logos">
+      {logos.map((l) => (
+        <div class={`logo-cell${l.pequeno ? ' pequeno' : ''}`} title={l.alt ?? l.nome}>
+          <img src={l.src} alt={`Logo ${l.alt ?? l.nome}`} loading="lazy" />
+        </div>
+      ))}
+    </div>
+
+    <p class="logos-nota">Mais de 500 empresas atendidas ao longo de mais de uma década. A régua é sempre a mesma, menos vaidade e mais resultado.</p>
+
+    <div class="relacao">
+      <div class="relacao-head"><Icon name="handshake" size={16} stroke="#0070FE" /><span>Relações que duram</span></div>
+      <p class="relacao-texto">
+        PSA Sistemas e Lumi Software desde o início, Canal Técnico desde 2017, Tubos ABC desde 2018.
+        Como prova de porte, atuação também com o Grupo Flora, do grupo JBS, citado aqui só por nome.
+      </p>
+      <p class="relacao-obs">O Grupo Flora (JBS) é uma marca distinta da Flora da grade acima, que é cliente local.</p>
+    </div>
+
+    <div class="cred">
+      <div class="cred-head"><Icon name="badge-check" size={18} stroke="#0070FE" /><span>Credenciais</span></div>
+      <div class="cred-grid">
+        {credenciais.map((c) => (
+          <div class="cred-cell">
+            <div class="cred-nome">{c.nome}</div>
+            <div class="cred-desc">{c.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cases{padding:66px 0 64px}
+  .cases-stats{margin-top:6px}
+
+  .logo-head{margin-top:44px;display:flex;justify-content:flex-end}
+  .logo-head .cota{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--jet);text-transform:uppercase}
+
+  .logos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:12px;border:3px solid var(--navy);background:var(--white)}
+  .logo-cell{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;padding:22px;border-right:1px solid rgba(10,23,48,.16);border-bottom:1px solid rgba(10,23,48,.16)}
+  .logo-cell img{max-height:54px;width:auto;object-fit:contain;filter:grayscale(1) contrast(.9) opacity(.78);transition:filter .15s}
+  .logo-cell:hover img{filter:none}
+  /* Lumi é pequena (150px), não ampliar */
+  .logo-cell.pequeno img{max-height:38px}
+
+  .logos-nota{margin-top:22px;border-left:5px solid var(--pop);background:var(--pastel-2);border-top:2px solid var(--navy);border-right:2px solid var(--navy);border-bottom:2px solid var(--navy);box-shadow:6px 6px 0 var(--navy);padding:18px 22px;font-family:var(--title);font-weight:600;font-size:clamp(17px,2.2vw,21px);line-height:1.4;letter-spacing:-.3px;color:var(--navy);max-width:42em}
+
+  .relacao{margin-top:26px;border:3px solid var(--navy);background:var(--white);padding:18px 22px}
+  .relacao-head{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy)}
+  .relacao-texto{font-size:15px;line-height:1.6;color:var(--jet);margin-top:10px;max-width:46em}
+  .relacao-obs{font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.3px;color:var(--jet);opacity:.8;margin-top:10px;padding-top:10px;border-top:1px solid rgba(10,23,48,.16);max-width:46em}
+
+  .cred{margin-top:46px;border:3px solid var(--navy);background:var(--pastel-2);box-shadow:8px 8px 0 var(--navy)}
+  .cred-head{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);padding:13px 18px;border-bottom:3px solid var(--navy);background:var(--white)}
+  .cred-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .cred-cell{padding:20px 18px;border-right:1px solid rgba(10,23,48,.2)}
+  .cred-cell:last-child{border-right:0}
+  .cred-nome{font-family:var(--title);font-weight:800;font-size:18px;letter-spacing:-.4px;color:var(--navy)}
+  .cred-desc{font-size:13px;line-height:1.5;color:var(--jet);margin-top:6px}
+
+  @media(max-width:880px){
+    .logos{grid-template-columns:repeat(3,1fr)}
+    .cred-grid{grid-template-columns:repeat(2,1fr)}
+    .cred-cell:nth-child(2){border-right:0}
+  }
+  @media(max-width:520px){
+    .logos{grid-template-columns:repeat(2,1fr)}
+    .cred-grid{grid-template-columns:1fr}
+    .cred-cell{border-right:0;border-bottom:1px solid rgba(10,23,48,.2)}
+  }
+</style>

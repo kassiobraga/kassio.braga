@@ -1,0 +1,104 @@
+---
+import PxCorner from './pixel/PxCorner.astro';
+import { site } from '../data/site.ts';
+
+interface Props { blog?: boolean; }
+const { blog = false } = Astro.props;
+const base = blog ? '/' : '';
+
+const links = [
+  { href: `${base}#sobre`, label: 'Sobre' },
+  { href: `${base}#historia`, label: 'História' },
+  { href: `${base}#cases`, label: 'Cases' },
+  { href: `${base}#palestras`, label: 'Palestras' },
+  { href: `${base}#ia`, label: 'IA' },
+  { href: '/blog', label: 'Blog' },
+  { href: `${base}#contato`, label: 'Contato' },
+];
+---
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Kassio Braga, início">
+      <PxCorner size={23} class="px" />
+      <span class="brand-text">
+        <span class="name">Kassio Braga</span>
+        <span class="sub">ALL.Q AGÊNCIA</span>
+      </span>
+    </a>
+
+    <div class="links">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </div>
+
+    <div class="nav-cta">
+      <a class="in-link" href={site.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn de Kassio Braga">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+      </a>
+      <a class="btn btn-primary nav-btn" href={`${base}#contato`}>Propor parceria</a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="menu-mobile" id="menu-mobile" hidden>
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    <a class="btn btn-primary" href={`${base}#contato`}>Propor parceria</a>
+  </div>
+</nav>
+
+<style>
+  nav{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:3px solid var(--navy)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:18px;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--navy)}
+  .brand .px{flex:0 0 auto}
+  .brand-text{display:flex;flex-direction:column}
+  .name{font-family:var(--title);font-weight:800;font-size:21px;letter-spacing:-.5px;line-height:1}
+  .sub{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--pop);margin-top:3px}
+  .links{display:flex;gap:24px}
+  .links a{font-family:var(--mono);font-size:12px;letter-spacing:.5px;color:var(--navy);text-decoration:none;text-transform:uppercase;padding-bottom:2px;border-bottom:2px solid transparent}
+  .links a:hover{border-bottom:2px solid var(--pop)}
+  .nav-cta{display:flex;align-items:center;gap:12px}
+  .in-link{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:2px solid var(--navy);background:var(--white);color:var(--navy)}
+  .in-link:hover{background:var(--pop);border-color:var(--pop);color:var(--white)}
+
+  .menu-toggle{display:none;flex-direction:column;gap:5px;width:42px;height:40px;border:2px solid var(--navy);background:var(--white);cursor:pointer;align-items:center;justify-content:center}
+  .menu-toggle span{display:block;width:20px;height:2px;background:var(--navy)}
+  .menu-mobile{display:none;flex-direction:column;border-top:3px solid var(--navy)}
+  .menu-mobile a{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:var(--navy);text-decoration:none;padding:14px var(--pad);border-bottom:1px solid rgba(10,23,48,.14)}
+  .menu-mobile .btn{margin:16px var(--pad);justify-content:center}
+
+  @media(max-width:980px){
+    .links{display:none}
+    .nav-btn{display:none}
+    .menu-toggle{display:flex}
+    .menu-mobile[data-open]{display:flex}
+  }
+</style>
+
+<script>
+  var toggle = document.querySelector('.menu-toggle');
+  var menu = document.getElementById('menu-mobile');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = menu.hasAttribute('data-open');
+      if (open) {
+        menu.removeAttribute('data-open');
+        menu.setAttribute('hidden', '');
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        menu.setAttribute('data-open', '');
+        menu.removeAttribute('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+    menu.addEventListener('click', function (e) {
+      var t = e.target as HTMLElement;
+      if (t && t.tagName === 'A') {
+        menu.removeAttribute('data-open');
+        menu.setAttribute('hidden', '');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>

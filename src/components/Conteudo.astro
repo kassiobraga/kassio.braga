@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import PxDivider from './pixel/PxDivider.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site.ts';
+
+const posts = (await getCollection('blog', (e) => !e.data.rascunho))
+  .sort((a, b) => b.data.data.valueOf() - a.data.data.valueOf())
+  .slice(0, 3);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '');
+---
+<section class="conteudo" id="conteudo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span class="bar"></span>Conteúdo · o que ando escrevendo</div>
+      <h2>Bastidor de marketing, automação e B2B.</h2>
+      <PxDivider />
+    </div>
+
+    <div class="grid">
+      {posts.map((p) => (
+        <a class="post" href={`/blog/${p.slug}`}>
+          <div class="post-top">
+            <span class="ptag">{p.data.tag}</span>
+            <span class="pdate">{fmt(p.data.data)}</span>
+          </div>
+          <h3>{p.data.titulo}</h3>
+          <p>{p.data.resumo}</p>
+          <span class="more">Ler artigo <Icon name="arrow-up-right" size={16} /></span>
+        </a>
+      ))}
+    </div>
+
+    <div class="media">
+      <div class="media-col">
+        <div class="media-head"><Icon name="play" size={16} stroke="#0070FE" /><span>No YouTube</span></div>
+        <div class="frame video-frame">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${site.youtubeId}`}
+            title="Vídeo de Kassio Braga no YouTube"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="media-col">
+        <div class="media-head"><Icon name="instagram" size={16} stroke="#0070FE" /><span>No Instagram</span></div>
+        <a class="frame insta-card" href={site.instagram} target="_blank" rel="noopener noreferrer">
+          <Icon name="instagram" size={40} stroke="#EAEEF6" class="insta-glyph" />
+          <span class="insta-handle">{site.instagramHandle}</span>
+          <span class="insta-more">Ver no Instagram <Icon name="arrow-up-right" size={16} /></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .conteudo{padding:66px 0 64px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+  .post{display:flex;flex-direction:column;border:3px solid var(--navy);background:var(--white);padding:20px;text-decoration:none;color:var(--navy);box-shadow:6px 6px 0 var(--navy);transition:transform .12s,box-shadow .12s}
+  .post:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--pop)}
+  .post-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .ptag{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border:2px solid var(--navy);background:var(--pastel-2);padding:4px 8px}
+  .pdate{font-family:var(--mono);font-size:11px;letter-spacing:.5px;color:var(--jet);text-transform:uppercase}
+  .post h3{font-family:var(--title);font-weight:800;font-size:20px;letter-spacing:-.4px;margin-top:14px;line-height:1.15}
+  .post p{font-size:14px;line-height:1.55;color:var(--jet);margin-top:10px;flex:1}
+  .more{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--pop);margin-top:16px}
+
+  .media{margin-top:46px;display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start}
+  .media-head{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:14px}
+  .video-frame{aspect-ratio:16/9;background:var(--navy)}
+  .video-frame iframe{width:100%;height:100%;border:0;display:block;filter:none}
+
+  .insta-card{aspect-ratio:16/9;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-decoration:none;transition:transform .12s,box-shadow .12s}
+  .insta-card:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--pop)}
+  .insta-handle{font-family:var(--title);font-weight:800;font-size:clamp(16px,1.8vw,20px);letter-spacing:-.4px;color:var(--white)}
+  .insta-more{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#9db8e6}
+
+  @media(max-width:820px){
+    .grid{grid-template-columns:1fr}
+    .media{grid-template-columns:1fr}
+  }
+</style>
