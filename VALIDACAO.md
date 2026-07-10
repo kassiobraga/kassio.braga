@@ -4,7 +4,25 @@ Lista de tudo que precisa da confirmação do Kassio antes do deploy. O protóti
 rodando local (`npm run dev`), build estático passa sem erro. **Nada de novo foi inventado**:
 o que não estava no brief ou no site atual virou placeholder honesto e está listado abaixo.
 
-Legenda de status: ⛔ bloqueado, ⚠️ a confirmar, ✅ usado (confirmar se procede), ✔️ resolvido na rodada 2, ✳️ aplicado nas rodadas 3 e 4.
+Legenda de status: ⛔ bloqueado, ⚠️ a confirmar, ✅ usado (confirmar se procede), ✔️ resolvido na rodada 2, ✳️ aplicado nas rodadas 3, 4 e 5.
+
+---
+
+## Rodada 5, fechamento e deploy de teste (resumo)
+
+Rodada de fechamento. Dois ajustes rápidos e o deploy de teste (só `.pages.dev`, sem custom
+domain, sem tocar no DNS de kassiobraga.com.br, que segue no ar).
+
+- ✳️ **Palestras com seis itens**: incluídas **Campus Party Brasília (2017)** e **Capital
+  Empreendedora (2018)**, antes reservas, no mesmo padrão blueprint (moldura, legenda mono,
+  ano). Seção reordenada por ano, do mais recente ao mais antigo. Papel sóbrio, sem descrição
+  inventada. Arquivo: `src/components/Palestras.astro`. Detalhe na seção 2.
+- ✳️ **Datas confirmadas pelo Kassio** (marcador "a confirmar" removido): Campus Party GO
+  2022, Sebrae DF 2021, Brasília Innovation Week 2021, Webinário E-goi 2022, Campus Party BSB
+  2017 e Capital Empreendedora 2018.
+- ✳️ **Vídeo do YouTube** `cH0N-6W1u6A` confirmado.
+- ✳️ **Ano AllQuadrado → All.Q** encerrado: mantém "pouco depois", sem cravar.
+- ⛔ **CRP, IDX e UNIFAN** seguem bloqueados, sem alteração.
 
 ---
 
@@ -83,8 +101,9 @@ nascido em Brasília em 1989, morou lá até 2015.
 
 - ✳️ **Correções aplicadas**: removidas a "transição tech com Softplan" e a fase genérica
   da PSA; corrigida a fundação para janeiro de 2017 (antes constava 2016).
-- ⚠️ **A confirmar (não cravado no site)**: o **ano exato** da simplificação de AllQuadrado
-  Marketing para All.Q Agência. O texto diz apenas "pouco depois", sem ano.
+- ✳️ **Encerrado (rodada 5)**: o **ano exato** da simplificação de AllQuadrado Marketing
+  para All.Q Agência fica como está. O texto mantém "pouco depois", sem cravar ano, por
+  decisão do Kassio.
 - **Fotos das fases**: usadas fotos reais onde fazia sentido. Só a fase 04 tem foto real
   (`perfil.webp`, retrato). Fases 01, 02 e 03 usam o **grafismo blueprint**
   (`PlantaBlueprint`), no mesmo padrão da construção. Nenhum banco de imagem.
@@ -92,19 +111,25 @@ nascido em Brasília em 1989, morou lá até 2015.
 
 ## 2. Datas de palestras e mentorias (seção Palestras)
 
-Datas recuperadas do site atual, que o brief marcava como `[data a confirmar]`. Confirmar:
+✳️ **Rodada 5: todas as datas confirmadas pelo Kassio.** A seção agora tem **seis itens**,
+ordenados por ano (do mais recente ao mais antigo). As duas reservas (Campus Party BSB 2017
+e Capital Empreendedora 2018) entraram na grade, no mesmo padrão blueprint das demais.
 
 | Item | Data exibida | Status |
 |------|--------------|--------|
-| Campus Party Goiás (palco principal) | 2022 | ✅ confirmar |
-| Mentoria Sebrae DF | 2021 | ⚠️ confirmar |
-| Brasília Innovation Week, programa BIOTIC (mentor) | 2021 | ⚠️ confirmar |
-| Webinário E-goi | 2022 | ⚠️ confirmar |
+| Campus Party Goiás (palco principal) | 2022 | ✳️ confirmado |
+| Webinário E-goi | 2022 | ✳️ confirmado |
+| Brasília Innovation Week, programa BIOTIC (mentor) | 2021 | ✳️ confirmado |
+| Mentoria Sebrae DF | 2021 | ✳️ confirmado |
+| Capital Empreendedora | 2018 | ✳️ confirmado (incluído na rodada 5) |
+| Campus Party Brasília | 2017 | ✳️ confirmado (incluído na rodada 5) |
 
-- Existem mais dois itens reais com foto no site atual que **não** entraram nesta versão
-  (para não inflar a seção): **Campus Party BSB 2017** e **Capital Empreendedora 2018**.
-  Quer incluir? As fotos já estão otimizadas em `public/img/` (campus-party-bsb.webp,
-  capital-empreendedora.webp, esta última já usada na timeline).
+- ✳️ **Resolvido (rodada 5)**: os dois itens que antes eram reserva (**Campus Party BSB
+  2017** e **Capital Empreendedora 2018**) foram incluídos na seção Palestras, com as fotos
+  já otimizadas (`campus-party-bsb.webp`, `capital-empreendedora.webp`), papel sóbrio
+  ("Palestrante") e ano. Nenhuma descrição inventada.
+- ⚠️ **Local de Capital Empreendedora**: exibido como "Brasília · DF" por coerência (evento
+  do mesmo período em BSB). Se o local correto for outro, avisar para ajustar.
 
 ## 3. Liberação de logos (seção Cases)
 
@@ -154,8 +179,8 @@ PSA Sistemas e Lumi Software **desde o início**, Canal Técnico **desde 2017**,
 
 ## 5. Vídeo do YouTube e Instagram (seção Conteúdo)
 
-- Embed usando o ID `cH0N-6W1u6A`, **recuperado do site atual**. ⚠️ Confirmar se é o vídeo
-  certo para destacar, ou enviar outra URL. Trocar em `src/data/site.ts` (`youtubeId`).
+- Embed usando o ID `cH0N-6W1u6A`. ✳️ **Confirmado pelo Kassio (rodada 5)** como o vídeo
+  certo para destacar. Definido em `src/data/site.ts` (`youtubeId`).
 - ✳️ **Instagram adicionado (rodada 3)**, ao lado do vídeo (dois lado a lado). Card com
   ícone Lucide `instagram` (sem emoji) que linka para
   **`https://www.instagram.com/allq.agencia/`**. Handle exibido: `@allq.agencia`. O vídeo do
@@ -174,8 +199,8 @@ Todas reais, do site atual ou do hub. Otimizadas para webp. Nenhum banco de imag
 | sebrae-df.webp | Palestras | imagens/sebrae-df.jpg | ✅ ok |
 | innovation-week.webp | Palestras | imagens/innovation week.jpg | ✅ ok |
 | webinario-egoi.webp | Palestras | imagens/webinario e-goi.jpg | ⚠️ verificar nitidez |
-| capital-empreendedora.webp | (reserva, rodada 3) | imagens/capital empreendedora.jpg | ✳️ saiu da timeline; disponível se quiser usar |
-| campus-party-bsb.webp | (não usada ainda) | imagens/cpbsb2017.jpg | reserva |
+| capital-empreendedora.webp | Palestras (rodada 5) | imagens/capital empreendedora.jpg | ✳️ em uso na seção Palestras |
+| campus-party-bsb.webp | Palestras (rodada 5) | imagens/cpbsb2017.jpg | ✳️ em uso na seção Palestras |
 | egoi-partners.webp | (não usada ainda) | imagens/e-goi partners.jpg | reserva |
 | logo-tubos-abc / psa-sistemas / imperador / fastescova / flora / hospital-olhos / vanguarda .webp | Cases (grade de 8) | imagens/clientes/ | ✅ |
 | logo-lumi.webp | Cases | lumisoftware.com.br | ✅ pequena (150 px), usada reduzida |
@@ -243,5 +268,9 @@ Revalidada na rodada 3 após as mudanças (timeline, Cases, Instagram).
 
 ## Próximo passo
 
-Sem deploy neste ciclo (regra do brief). Depois de você revisar os itens acima, ajustamos
-o que precisar e publicamos no Cloudflare Pages (`astro build`, output `dist`).
+✳️ **Rodada 5: deploy de teste publicado** no Cloudflare Pages (projeto `kassiobraga`),
+**só na URL `.pages.dev`**. Sem custom domain, sem tocar no DNS de kassiobraga.com.br (que
+segue no ar). URL de produção do teste: **https://kassiobraga.pages.dev**.
+
+Depois da sua revisão no ambiente de teste, o passo final é o cutover de produção (apontar o
+domínio), que **não** foi feito neste ciclo.
