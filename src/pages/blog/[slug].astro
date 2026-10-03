@@ -66,7 +66,7 @@ const articleLd = {
 </Base>
 
 <style>
-  .article-wrap{padding:42px 0 64px;max-width:760px}
+  .article-wrap{padding-top:42px;padding-bottom:64px;max-width:calc(760px + var(--pad) * 2)}
   .back{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--navy);text-decoration:none}
   .back :global(svg){transform:rotate(180deg)}
   .back:hover{color:var(--pop)}
@@ -91,6 +91,10 @@ const articleLd = {
   .article :global(blockquote){border-left:5px solid var(--pop);background:var(--white);border-top:2px solid var(--navy);border-right:2px solid var(--navy);border-bottom:2px solid var(--navy);box-shadow:5px 5px 0 var(--navy);padding:18px 22px;margin:26px 0 0;font-family:var(--title);font-weight:600;font-size:18px;color:var(--navy);line-height:1.5}
   .article :global(blockquote p){margin-top:0}
   .article :global(img){border:3px solid var(--navy);box-shadow:8px 8px 0 var(--navy);margin:28px 0 0}
+  .article :global(table){width:100%;border-collapse:collapse;margin:24px 0 0;font-size:15px;line-height:1.5;background:var(--white);border:3px solid var(--navy);box-shadow:6px 6px 0 var(--navy);display:block;overflow-x:auto}
+  .article :global(th){background:var(--navy);color:var(--white);font-family:var(--mono);font-size:12px;letter-spacing:.5px;text-transform:uppercase;text-align:left;padding:10px 12px;white-space:nowrap}
+  .article :global(td){padding:10px 12px;border-top:1px solid rgba(10,23,48,.15);vertical-align:top}
+  .article :global(tr:nth-child(even) td){background:var(--paper)}
   .article :global(code){font-family:var(--mono);font-size:.85em;background:var(--pastel-2);border:1px solid var(--navy);padding:1px 5px}
 
   .article-foot{margin-top:48px;border-top:3px solid var(--navy);padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
