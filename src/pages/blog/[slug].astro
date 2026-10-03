@@ -15,7 +15,7 @@ const { Content } = await post.render();
 const fmt = (d: Date) =>
   d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
-<Base title={`${post.data.titulo} · Kassio Braga`} description={post.data.resumo}>
+<Base title={`${post.data.titulo} · Kassio Braga`} description={post.data.resumo} type="article">
   <Nav blog={true} />
   <main class="wrap article-wrap">
     <a class="back" href="/blog"><Icon name="arrow-right" size={15} /><span>Todos os artigos</span></a>

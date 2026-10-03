@@ -5,36 +5,78 @@ import { site } from '../data/site.ts';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: 'website' | 'article';
 }
 
 const {
   title = 'Kassio Braga · Do design à automação',
   description = 'Kassio Braga, fundador da All.Q Agência. Marketing, design e automação de IA para negócios B2B. Estratégia que vira sistema.',
+  image = '/og-image.jpg',
+  type = 'website',
 } = Astro.props;
+
+const siteUrl = `https://${site.dominio}`;
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL(image, siteUrl).href;
+const GTM_ID = 'GTM-MSK9NBMD';
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: site.nome,
-  url: `https://${site.dominio}`,
-  email: `mailto:${site.email}`,
-  jobTitle: 'Fundador da All.Q Agência',
-  worksFor: { '@type': 'Organization', name: site.agencia },
-  sameAs: [site.linkedin],
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}/#kassio`,
+      name: site.nome,
+      url: siteUrl,
+      image: `${siteUrl}/img/historia-allq.webp`,
+      email: `mailto:${site.email}`,
+      jobTitle: 'Fundador da All.Q Agência',
+      worksFor: { '@type': 'Organization', name: site.agencia, url: 'https://allq.com.br' },
+      sameAs: [site.linkedin, site.instagram, 'https://allq.com.br'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: siteUrl,
+      name: site.nome,
+      inLanguage: 'pt-BR',
+      publisher: { '@id': `${siteUrl}/#kassio` },
+    },
+  ],
 };
 ---
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Google Tag Manager -->
+  <script is:inline define:vars={{ GTM_ID }}>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',GTM_ID);
+  </script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href={canonical} />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <meta property="og:site_name" content={site.nome} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={type} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,6 +87,38 @@ const jsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <slot />
+
+  <!-- Eventos de contato para o GTM: whatsapp_click, linkedin_click, email_click, instagram_click -->
+  <script is:inline>
+    (function () {
+      var regras = [
+        ['whatsapp_click', /(^https?:\/\/(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com))/i],
+        ['linkedin_click', /linkedin\.com/i],
+        ['instagram_click', /instagram\.com/i],
+        ['email_click', /^mailto:|\/cdn-cgi\/l\/email-protection/i],
+      ];
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href]');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        for (var i = 0; i < regras.length; i++) {
+          if (regras[i][1].test(href)) {
+            var bloco = a.closest('section[id], header, footer, nav');
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: regras[i][0],
+              link_url: a.href,
+              link_location: bloco ? (bloco.id || bloco.tagName.toLowerCase()) : 'pagina',
+            });
+            return;
+          }
+        }
+      }, true);
+    })();
+  </script>
 </body>
 </html>

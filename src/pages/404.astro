@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PxDivider from '../components/pixel/PxDivider.astro';
+---
+<Base title="Página não encontrada · Kassio Braga" description="Esta página não existe ou mudou de endereço.">
+  <Nav blog={true} />
+  <main class="wrap nao-encontrada">
+    <div class="sec-head">
+      <div class="kicker"><span class="bar"></span>Erro 404</div>
+      <h2>Essa página não existe ou mudou de endereço.</h2>
+      <PxDivider />
+    </div>
+    <p><a href="/">Voltar para o início</a> · <a href="/blog">Ver o blog</a></p>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .nao-encontrada{padding:120px 0 96px}
+  .nao-encontrada p{margin-top:24px;font-size:17px}
+  .nao-encontrada a{color:var(--navy);font-weight:600;text-decoration:underline}
+</style>
