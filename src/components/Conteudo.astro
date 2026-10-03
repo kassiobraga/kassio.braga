@@ -9,7 +9,7 @@ const posts = (await getCollection('blog', (e) => !e.data.rascunho))
   .slice(0, 3);
 
 const fmt = (d: Date) =>
-  d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '');
+  d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }).replace('.', '');
 ---
 <section class="conteudo" id="conteudo">
   <div class="wrap">

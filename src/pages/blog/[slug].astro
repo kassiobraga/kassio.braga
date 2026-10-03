@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 const fmt = (d: Date) =>
-  d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+  d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
 <Base title={`${post.data.titulo} · Kassio Braga`} description={post.data.resumo}>
   <Nav blog={true} />
