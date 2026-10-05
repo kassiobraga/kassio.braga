@@ -1,0 +1,23 @@
+name: Publicação diária do blog
+
+# Reconstrói o site todo dia às 06:00 (horário de Brasília) no Cloudflare Pages.
+# Assim cada artigo entra no ar sozinho na data marcada no campo "data".
+# Precisa do segredo CF_DEPLOY_HOOK (gancho de implantação do projeto kassio-braga).
+
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispara o build no Cloudflare Pages
+        env:
+          CF_DEPLOY_HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$CF_DEPLOY_HOOK" ]; then
+            echo "Segredo CF_DEPLOY_HOOK não configurado." && exit 1
+          fi
+          curl -fsS -X POST "$CF_DEPLOY_HOOK"

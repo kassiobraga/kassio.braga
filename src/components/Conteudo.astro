@@ -1,10 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+import { publicado } from '../data/publicado.ts';
 import PxDivider from './pixel/PxDivider.astro';
 import Icon from './Icon.astro';
 import { site } from '../data/site.ts';
 
-const posts = (await getCollection('blog', (e) => !e.data.rascunho))
+const posts = (await getCollection('blog', publicado))
   .sort((a, b) => b.data.data.valueOf() - a.data.data.valueOf())
   .slice(0, 3);
 

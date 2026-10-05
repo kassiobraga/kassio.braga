@@ -5,8 +5,9 @@ import Footer from '../../components/Footer.astro';
 import PxDivider from '../../components/pixel/PxDivider.astro';
 import Icon from '../../components/Icon.astro';
 import { getCollection } from 'astro:content';
+import { publicado } from '../../data/publicado.ts';
 
-const posts = (await getCollection('blog', (e) => !e.data.rascunho))
+const posts = (await getCollection('blog', publicado))
   .sort((a, b) => b.data.data.valueOf() - a.data.data.valueOf());
 
 const fmt = (d: Date) =>
